@@ -25,18 +25,27 @@ if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['alterar'])){
 <h1>Atualização de Produto</h1>
 <a href="index.php">Voltar</a>
 
-<form action="atualizar.php" method="post">
-    <input type="text" name="produtos[id]" value="<?=$a->id?>" hidden>
+<form action="atualizar.php" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" name="produtos[id]" value="<?=$a->id?>">
+
     <label>Nome</label>
     <input type="text" name="produtos[nome]" value="<?=$a->nome?>"><br><br>
+
     <label>Descrição</label>
     <input type="text" name="produtos[descricao]" value="<?=$a->descricao?>"><br><br>
+
     <label>Quantidade</label>
     <input type="text" name="produtos[quantidade]" value="<?=$a->quantidade?>"><br><br>
+
     <label>Preço</label>
     <input type="text" name="produtos[preco]" value="<?=$a->preco?>"><br><br>
 
-    <button name="cadastrar">atualizar</button>
+    <label>Selecionar Foto</label>
+    <input type="file" name="fileToUpload"><br><br>
+
+    <button type="submit">Atualizar</button>
 </form>
+
 </body>
 </html>

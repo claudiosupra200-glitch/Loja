@@ -78,6 +78,17 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
         <td><?php echo $produto->descricao;?></td>
         <td><?php echo $produto->quantidade;?></td>
         <td>R$ <?php echo $produto->preco;?></td>
+
+        <?php if($produto->imagem == "") : ?>
+            <td>
+                <img src="imagens/OIP.webp" style="width:100px; height:100px; object-fit:cover;">
+            </td>
+        <?php else: ?>
+            <td>
+                <img src="uploads/<?= $produto->imagem; ?>" style="width:100px; height:100px; object-fit:cover;">
+            </td>
+        <?php endif; ?>
+
         <td><a href="atualizar.php?alterar=<?= $produto->id ?>">Alterar</a> </td>
         <td><a href="index.php?excluir=<?= $produto->id ?>">Excluir</a> </td>
     </tr>

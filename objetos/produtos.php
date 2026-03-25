@@ -8,6 +8,8 @@ Class produtos
     public $descricao;
     public $quantidade;
     public $preco;
+    public $imagem;
+    private $bd;
 
     public function __construct($bd)
     {
@@ -34,13 +36,14 @@ Class produtos
 
     public function cadastrar()
     {
-        $sql = "INSERT INTO produtos (nome, descricao, quantidade, preco) VALUES (:nome, :descricao, :quantidade, :preco)";
+        $sql = "INSERT INTO produtos (nome, descricao, quantidade, preco, imagem) VALUES (:nome, :descricao, :quantidade, :preco, :imagem)";
 
         $stmt = $this->bd->prepare($sql);
         $stmt->bindParam(":nome", $this->nome, PDO::PARAM_STR);
         $stmt->bindParam(":descricao", $this->descricao, PDO::PARAM_STR);
         $stmt->bindParam(":quantidade", $this->quantidade, PDO::PARAM_INT);
         $stmt->bindParam(":preco", $this->preco, PDO::PARAM_STR);
+        $stmt->bindParam(":imagem", $this->imagem, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             return true;
@@ -62,7 +65,7 @@ Class produtos
 
         public function atualizar()
         {
-            $sql = "UPDATE produtos SET nome = :nome, descricao = :descricao, quantidade = :quantidade, preco = :preco WHERE id = :id";
+            $sql = "UPDATE produtos SET nome = :nome, descricao = :descricao, quantidade = :quantidade, preco = :preco, imagem = :imagem WHERE id = :id";
 
             $stmt = $this->bd->prepare($sql);
             $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
@@ -70,6 +73,7 @@ Class produtos
             $stmt->bindParam(":descricao", $this->descricao, PDO::PARAM_STR);
             $stmt->bindParam(":quantidade", $this->quantidade, PDO::PARAM_INT);
             $stmt->bindParam(":preco", $this->preco, PDO::PARAM_STR);
+            $stmt->bindParam(":imagem", $this->imagem, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
                 return true;
