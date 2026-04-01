@@ -1,0 +1,32 @@
+LOGINS E SENHAS DE ACESSO - LOJA FARMÁCIA
+
+⚠️ IMPORTANTE: 
+Para que o login funcione, você deve re-executar o script SQL em 'configs/banco.php' 
+no seu banco de dados, pois a coluna 'senha' estava faltando em uma versão anterior.
+
+Usuários de Teste:
+
+1. Fábio Oliveira
+   E-mail: fabio@loja.com
+   Senha: password
+
+2. Giovanna Mendes
+   E-mail: giovanna@loja.com
+   Senha: password
+
+3. Henrique Rocha
+   E-mail: henrique@loja.com
+   Senha: password
+
+4. Isabela Fernandes
+   E-mail: isabela@loja.com
+   Senha: password
+
+5. João Pedro
+   E-mail: joao@loja.com
+   Senha: password
+
+--------------------------------------------------
+OBSERVAÇÃO: A senha para todos os usuários acima é 'password'.
+O hash correspondente no banco de dados é: 
+$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
