@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="actions">
-            <a href="index.php" class="btn btn-secondary">Cancelar</a>
+            <a href="indexFuncionario.php" class="btn btn-secondary">Cancelar</a>
             <button name="cadastrar" class="btn btn-primary">
                 <i class="ri-save-line"></i> Finalizar Cadastro
             </button>

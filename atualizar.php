@@ -17,12 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['alterar'])) {
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produtos'])) {
     $controller->atualizarProdutos($_POST['produtos'], $_FILES);
 } else {
-    header("location: index.php");
+    header("location: indexFuncionario.php");
     exit();
 }
 
 if (!$a) {
-    header("location: index.php");
+    header("location: indexFuncionario.php");
     exit();
 }
 ?>
@@ -129,7 +129,7 @@ if (!$a) {
         </div>
 
         <div class="actions">
-            <a href="index.php" class="btn btn-secondary">Cancelar</a>
+            <a href="indexFuncionario.php" class="btn btn-secondary">Cancelar</a>
             <button type="submit" class="btn btn-primary">
                 <i class="ri-refresh-line"></i> Salvar Alterações
             </button>

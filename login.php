@@ -1,15 +1,37 @@
 <?php
+session_start();
 include_once "objetos/funcionario.php";
+include_once "objetos/cliente.php";
 include_once "configs/banco.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $database = new Banco();
     $db = $database->getConexao();
 
+    $login_input = $_POST["login"];
+    $senha_input = $_POST["senha"];
+
+    // 1. Tenta login como Funcionario (Usa e-mail corporativo)
     $f = new funcionario($db);
-    $f->emailCorporativo = $_POST["login"];
-    $f->senha = $_POST["senha"];
-    $f->login();
+    $f->emailCorporativo = $login_input;
+    $f->senha = $senha_input;
+    if ($f->login()) {
+        header("location: indexFuncionario.php");
+        exit();
+    }
+
+    // 2. Tenta login como Cliente (Usa campo login)
+    $c = new cliente($db);
+    $c->login = $login_input;
+    $c->senha = $senha_input;
+    if ($c->login()) {
+        header("location: index.php");
+        exit();
+    }
+
+    // Se ambos falharem
+    header("location: login.php?error=true");
+    exit();
 }
 ?>
 
@@ -34,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             --text: #1F2937;
             --border: #E2E8F0;
             --error: #E53935;
+            --success: #22C55E;
             --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
@@ -144,6 +167,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             gap: 0.5rem;
         }
 
+        .success-message {
+            background-color: #F0FDF4;
+            color: var(--success);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #DCFCE7;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
         .btn-login {
             width: 100%;
             padding: 0.9rem;
@@ -183,8 +219,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="logo-icon">
                 <i class="ri-medicine-bottle-fill"></i>
             </div>
-            <h2 class="title">Login Corporativo</h2>
-            <p class="subtitle">Acesse o sistema de gestão Loja Farmácia</p>
+            <h2 class="title">Área de Login</h2>
+            <p class="subtitle">Acesse sua conta para continuar</p>
         </div>
 
         <?php if (isset($_GET["error"])): ?>
@@ -194,9 +230,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
         <?php endif; ?>
 
+        <?php if (isset($_GET["msg"]) && $_GET["msg"] == "login_compra"): ?>
+            <div class="error-message" style="background-color: #FFFBEB; color: #B45309; border-color: #FEF3C7;">
+                <i class="ri-information-line"></i>
+                Por favor, cadastre-se ou faça login para finalizar sua compra.
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET["msg"]) && $_GET["msg"] == "success_cadastro"): ?>
+            <div class="success-message">
+                <i class="ri-checkbox-circle-line"></i>
+                Cadastro realizado com sucesso! Faça login.
+            </div>
+        <?php endif; ?>
+
         <form action="login.php" method="POST">
             <div class="form-group">
-                <input type="email" name="login" class="input-field" placeholder="E-mail Corporativo" required>
+                <input type="text" name="login" class="input-field" placeholder="Login ou E-mail Corporativo" required>
                 <i class="ri-mail-line"></i>
             </div>
 
@@ -211,8 +261,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </button>
         </form>
 
+        <div style="text-align: center; margin-top: 1.5rem;">
+            <p style="font-size: 0.9rem; color: #64748B;">
+                Não tem uma conta? <a href="cadastroCliente.php" style="color: var(--primary); text-decoration: none; font-weight: 600;">Cadastre-se aqui</a>
+            </p>
+        </div>
+
         <p class="footer-text">
-            Acesso Seguro &bull; Portal do Funcionário
+            Área de Clientes e Funcionários
         </p>
     </div>
 

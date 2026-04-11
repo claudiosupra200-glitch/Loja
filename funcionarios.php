@@ -9,7 +9,7 @@ if (!isset($_SESSION["funcionario"])) {
 
 // Verifica se o funcionário é Gerente (Role Check)
 if ($_SESSION['funcionario']->cargo !== 'Gerente') {
-    header("location: index.php?denied=true");
+    header("location: indexFuncionario.php?denied=true");
     exit();
 }
 
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["excluirFunc"])) {
         </div>
 
         <nav class="nav-links">
-            <a href="index.php" class="btn-back"><i class="ri-arrow-left-s-line"></i> Painel Principal</a>
+            <a href="indexFuncionario.php" class="btn-back"><i class="ri-arrow-left-s-line"></i> Painel Principal</a>
         </nav>
     </header>
 

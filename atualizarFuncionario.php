@@ -9,7 +9,7 @@ if (!isset($_SESSION["funcionario"])) {
 
 // Verifica se o funcionário é Gerente (Controle de Acesso)
 if ($_SESSION['funcionario']->cargo !== 'Gerente') {
-    header("location: index.php?denied=true");
+    header("location: indexFuncionario.php?denied=true");
     exit();
 }
 

@@ -59,7 +59,7 @@ class funcionarioController
         $this->funcionario->senha = $dados['senha'];
 
         if ($this->funcionario->cadastrar()) {
-            header("location: index.php");
+            header("location: indexFuncionario.php");
             exit();
         }
     }
@@ -69,7 +69,7 @@ class funcionarioController
         $this->funcionario->id = $id;
 
         if ($this->funcionario->excluir()) {
-            header("location: index.php");
+            header("location: indexFuncionario.php");
             exit();
         }
     }
@@ -100,7 +100,7 @@ class funcionarioController
         }
 
         if ($this->funcionario->atualizar()) {
-            header("location: index.php");
+            header("location: indexFuncionario.php");
             exit();
         }
     }

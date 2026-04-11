@@ -51,7 +51,7 @@ class produtosController {
         $this->produtos->imagem = $this->img_name;
 
         if($this->produtos->cadastrar()){
-            header("location: index.php");
+            header("location: indexFuncionario.php");
             exit();
         }
     }
@@ -60,7 +60,7 @@ class produtosController {
         $this->produtos->id = $id;
 
         if($this->produtos->excluir()){
-            header("location: index.php");
+            header("location: indexFuncionario.php");
             exit();
         }
     }
@@ -87,7 +87,7 @@ class produtosController {
         }
 
         if($this->produtos->atualizar()){
-            header("location: index.php");
+            header("location: indexFuncionario.php");
             exit();
         }
     }

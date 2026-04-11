@@ -129,15 +129,12 @@ class funcionario
                     session_start();
                 }
                 $_SESSION["funcionario"] = $resultado;
-                header("location: index.php");
-                exit();
+                return true;
             } else {
-                header("location: login.php?error=true");
-                exit();
+                return false;
             }
         } else {
-            header("location: login.php?error=true");
-            exit();
+            return false;
         }
     }
 

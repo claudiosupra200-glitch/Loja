@@ -31,7 +31,7 @@ Class produtos
         $resultado = $this->bd->prepare($sql);
         $resultado->bindParam(":id", $id);
         $resultado->execute();
-        return $resultado->fetchAll(pdo::FETCH_OBJ);
+        return $resultado->fetch(pdo::FETCH_OBJ);
     }
 
     public function cadastrar()
